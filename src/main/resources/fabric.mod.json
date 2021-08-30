@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "mobworks",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Mobworks",
+  "description": "Addons to mobs",
   "authors": [
     "Me!"
   ],
@@ -14,28 +14,23 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/examplemod/icon.png",
+  "icon": "assets/mobworks/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
-      "net.glasslauncher.example.events.init.AchievementListener",
-      "net.glasslauncher.example.events.init.BlockListener",
-      "net.glasslauncher.example.events.init.ItemListener",
-      "net.glasslauncher.example.events.init.PlayerHandlerListener",
-      "net.glasslauncher.example.events.init.RecipeListener"
+      "pl.lijek.mobworks.events.init.BlockListener",
+      "pl.lijek.mobworks.events.init.ItemListener",
+      "pl.lijek.mobworks.events.init.TileEntityListener",
+      "pl.lijek.mobworks.events.init.TabListener",
+      "pl.lijek.mobworks.Mobworks"
     ],
     "stationapi:event_bus_client": [
-      "net.glasslauncher.example.events.init.ModelListener",
-      "net.glasslauncher.example.events.init.KeyBindingListener",
-      "net.glasslauncher.example.events.init.TextureListener"
-    ],
-    "stationapi:event_bus_server": [
-      "net.glasslauncher.example.events.init.ServerInitListener"
+      "pl.lijek.mobworks.events.init.TextureListener"
     ]
   },
   "mixins": [
-    "examplemod.mixins.json"
+    "mobworks.mixins.json"
   ],
 
   "depends": {

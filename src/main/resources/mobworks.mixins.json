@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "pl.lijek.mobworks.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "LevelMixin",
+    "LivingMixin",
+    "MobSpawnerRendererMixin",
+    "TileEntityMobSpawnerMixin"
+  ],
+  "server": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

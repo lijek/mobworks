@@ -1,13 +1,7 @@
-# Fabric Example Mod with StationAPI and BIN Mappings for beta 1.7.3 server + client
+# Mobworks
+Currently WIP.
+Currently working features:
+- upgradeable spawners
+- mob conveyors
 
-## Setup
-
-[See the StationAPI wiki.](https://github.com/ModificationStation/StationAPI)
-
-## Common Issues
-
-[Here.](https://github.com/calmilamsy/BIN-fabric-example-mod#common-issues)
-
-## License
-
-This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
+Requires **[Fabric Legacy](https://github.com/calmilamsy/Cursed-Fabric-MultiMC)** and **[Station API](https://github.com/ModificationStation/StationAPI)** (2.0-PRE1 or newer)

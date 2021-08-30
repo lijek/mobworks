@@ -1,0 +1,35 @@
+item.coolitem.name=Cool Item
+item.spawnegg.name=Spawn
+tile.test.name=Example Block
+tile.test2.name=Example Block With Model
+tile.slowConveyor.name=Slow Mob Conveyor
+tile.moderateConveyor.name=Moderate Mob Conveyor
+tile.fastConveyor.name=Fast Mob Conveyor
+tile.mobGrinder.name=Mob Grinder
+
+item.spawnEgg.creeper.name=Spawn Creeper
+item.spawnEgg.skeleton.name=Spawn Skeleton
+item.spawnEgg.spider.name=Spawn Spider
+item.spawnEgg.giant.name=Spawn Giant
+item.spawnEgg.zombie.name=Spawn Zombie
+item.spawnEgg.slime.name=Spawn Slime
+item.spawnEgg.ghast.name=Spawn Ghast
+item.spawnEgg.pigzombie.name=Spawn Zombie Pigman
+
+item.spawnEgg.pig.name=Spawn Pig
+item.spawnEgg.sheep.name=Spawn Sheep
+item.spawnEgg.cow.name=Spawn Cow
+item.spawnEgg.chicken.name=Spawn Chicken
+item.spawnEgg.squid.name=Spawn Squid
+item.spawnEgg.wolf.name=Spawn Wolf
+
+item.spawnEgg.blank.name=Blank
+
+item.spawnerUpgrade.name=Spawner Upgrade
+item.spawnerUpgrade.name0=Redstone control upgrade
+item.spawnerUpgrade.name1=Max nearby mobs upgrade (+1)
+item.spawnerUpgrade.name2=Max nearby mobs downgrade (-1)
+item.spawnerUpgrade.name3=Mob spawning range upgrade (+1)
+item.spawnerUpgrade.name4=Mob spawning range downgrade (-1)
+
+tab.mobworks.name=Mobworks
