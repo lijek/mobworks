@@ -14,6 +14,7 @@ import net.modificationstation.stationapi.api.client.model.BlockWithWorldRendere
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlas;
 import net.modificationstation.stationapi.api.registry.Identifier;
 import net.modificationstation.stationapi.api.template.block.TemplateBlockBase;
+import paulevs.creative.CreativePlayer;
 
 public class Conveyor extends TemplateBlockBase implements BlockWithWorldRenderer {
     public final double speed;
@@ -54,6 +55,9 @@ public class Conveyor extends TemplateBlockBase implements BlockWithWorldRendere
 
     @Override
     public void onEntityCollision(Level level, int x, int y, int z, EntityBase entityBase) {
+        if(entityBase instanceof CreativePlayer)
+            if(((CreativePlayer)entityBase).isFlying())
+                return;
         Vec3f velocity = getEntityVelocityModifier(level, x, y, z);
         entityBase.accelerate(velocity.x * speed, 0, velocity.z * speed);
     }
@@ -98,7 +102,7 @@ public class Conveyor extends TemplateBlockBase implements BlockWithWorldRendere
         Tessellator tessellator = atlasTexture.getAtlas().getTessellator();
         float brightness = this.getBrightness(level, x, y, z);
         tessellator.colour(brightness, brightness, brightness);
-        int var20 = this.getTextureForSide(0);
+        //int var20 = this.getTextureForSide(0);
         /*int textureX = (var20 & 15) << 4;
         int textureY = var20 & 240;
         double minTextureX = ((float)textureX / 256.0F);

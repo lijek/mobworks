@@ -15,9 +15,12 @@ public class MobworksTab extends SearchTab {
         super(name, modID, icon);
         addItemWithVariants(ItemListener.spawnEgg);
         addItemWithVariants(ItemListener.spawnerUpgrade);
+        addItemWithVariants(ItemListener.mobGrinderUpgrade);
         addItem(block(BlockListener.slowConveyor));
         addItem(block(BlockListener.moderateConveyor));
         addItem(block(BlockListener.fastConveyor));
         addItem(block(BlockListener.grinder));
+        addItem(block(BlockListener.vacuumMachine));
+        addItem(block(BlockListener.cursedGrass));
     }
 }

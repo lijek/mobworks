@@ -26,7 +26,9 @@
       "pl.lijek.mobworks.Mobworks"
     ],
     "stationapi:event_bus_client": [
-      "pl.lijek.mobworks.events.init.TextureListener"
+      "pl.lijek.mobworks.events.init.TextureListener",
+      "pl.lijek.mobworks.events.init.TileEntityRendererListener",
+      "pl.lijek.mobworks.events.init.GUIListener"
     ]
   },
   "mixins": [

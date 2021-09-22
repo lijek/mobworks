@@ -47,7 +47,7 @@ repositories {
 		name = "Jitpack"
 		url "https://jitpack.io/"
 	}
-	maven { url "https://maven.glass-launcher.net/repo" }
+	//maven { url "https://maven.glass-launcher.net/repo" }
 }
 
 minecraft {
@@ -103,8 +103,8 @@ dependencies {
 		}
 		files(file.absolutePath)
 	}
-	modImplementation 'com.github.ModificationStation:StationAPI:6732315'
-
+	modImplementation 'com.github.lijek:StationAPI:b275c55'
+	modImplementation 'com.github.lijek:Creative-b1.7.3:5430b39'
 	//modImplementation urlFile("https://github.com/lijek/Creative-b1.7.3/releases/download/2.0.1/creative-2.0.1-dev.jar", "Creative")
 	//modImplementation urlFile("https://github.com/ModificationStation/StationAPI/releases/download/2.0-PRE1/StationAPI-2.0-PRE1-dev.jar", "StationAPI")
 	//compile urlFile("https://github.com/ModificationStation/StationAPI/releases/download/2.0-PRE1/StationAPI-2.0-PRE1-javadoc.jar", "StationAPIJavadoc")

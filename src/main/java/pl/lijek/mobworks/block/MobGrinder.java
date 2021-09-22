@@ -1,57 +1,99 @@
 package pl.lijek.mobworks.block;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.client.render.TileRenderer;
+import net.minecraft.entity.Item;
 import net.minecraft.entity.Living;
+import net.minecraft.entity.player.PlayerBase;
+import net.minecraft.inventory.InventoryBase;
+import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
 import net.minecraft.level.TileView;
+import net.minecraft.tileentity.TileEntityBase;
 import net.minecraft.util.maths.MathHelper;
-import net.modificationstation.stationapi.api.client.model.BlockWithWorldRenderer;
+import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.registry.Identifier;
-import net.modificationstation.stationapi.api.template.block.TemplateBlockBase;
+import net.modificationstation.stationapi.api.template.block.TemplateBlockWithEntity;
+import pl.lijek.mobworks.gui.MobGrinderContainer;
+import pl.lijek.mobworks.tileentity.TileEntityMobGrinder;
 
-public class MobGrinder extends TemplateBlockBase implements BlockWithWorldRenderer {
-    public int[] textures = new int[3];
-    private final int[] magic = {2, 5, 3, 4};
+import java.util.Random;
+
+import static pl.lijek.mobworks.Mobworks.MOD_ID;
+import static pl.lijek.mobworks.events.init.TextureListener.*;
+
+public class MobGrinder extends TemplateBlockWithEntity {
+    private final Random random = new Random();
+    private final int[] front = {2, 5, 3, 4};
+    private final int[] opposite = {2, 3, 0, 1};
 
     public MobGrinder(Identifier identifier) {
         super(identifier, Material.METAL);
-        /*textures[0] = 4;
-        textures[1] = 5;
-        textures[2] = 6;*/
+
+        setBlastResistance(2000.0F);
     }
 
     @Override
     public void afterPlaced(Level level, int x, int y, int z, Living living) {
-        int meta = magic[MathHelper.floor((double)(living.yaw * 4.0F / 360.0F) + 0.5D) & 3];
+        int meta = MathHelper.floor((double)(living.yaw * 4.0F / 360.0F) + 0.5D) & 3;
         level.setTileMeta(x, y, z, meta);
     }
 
     public int getTextureForSide(int side) {
-        if (side == 1) {
-            return textures[1];
-        } else if (side == 0) {
-            return textures[1];
+        if (side == 1 || side == 0) {
+            return mobGrinderSideNoSword;
         } else {
-            return side == 3 ? textures[2] : textures[0];
+            return side == 3 ? mobGrinderFront : mobGrinderSide;
         }
     }
 
     @Override
     public int getTextureForSide(TileView tileView, int x, int y, int z, int side) {
-        int meta = tileView.getTileMeta(x, y, z);
-        if (side == 1) {
-            return textures[1];
-        } else if (side == 0) {
-            return textures[1];
+        if (side == 1 || side == 0) {
+            return mobGrinderSideNoSword;
         } else {
-            return side != meta ? textures[2] : textures[0];
+            int meta = tileView.getTileMeta(x, y, z);
+            if (side == front[meta]) {
+                return mobGrinderFront;
+            }else if(side == front[opposite[meta]]){
+                return mobGrinderSideNoSword;
+            }
+
+            return mobGrinderSide;
         }
-        //return textures[0];
     }
 
     @Override
-    public void renderWorld(TileRenderer tileRenderer, TileView tileView, int x, int y, int z) {
-        tileRenderer.method_76(this, x, y, z);
+    protected TileEntityBase createTileEntity() {
+        return new TileEntityMobGrinder();
+    }
+
+    public boolean canUse(Level level, int x, int y, int z, PlayerBase player) {
+        TileEntityBase tileEntityMobGrinder = level.getTileEntity(x, y, z);
+        if (tileEntityMobGrinder instanceof TileEntityMobGrinder)
+            GuiHelper.openGUI(player, Identifier.of(MOD_ID, "mobGrinder"), (InventoryBase) tileEntityMobGrinder, new MobGrinderContainer(player.inventory, (TileEntityMobGrinder) tileEntityMobGrinder));
+        return true;
+    }
+
+    @Override
+    public void onBlockRemoved(Level level, int x, int y, int z) {
+        TileEntityMobGrinder mobGrinder = (TileEntityMobGrinder)level.getTileEntity(x, y, z);
+
+        for(int i = 0; i < mobGrinder.getInventorySize(); ++i) {
+            ItemInstance item = mobGrinder.getInventoryItem(i);
+            if (item != null) {
+                float var8 = this.random.nextFloat() * 0.8F + 0.1F;
+                float var9 = this.random.nextFloat() * 0.8F + 0.1F;
+                float var10 = this.random.nextFloat() * 0.8F + 0.1F;
+
+                Item itemEntity = new Item(level, (float)x + var8, (float)y + var9, (float)z + var10, new ItemInstance(item.itemId, item.count, item.getDamage()));
+                float var13 = 0.05F;
+                itemEntity.velocityX = (float)this.random.nextGaussian() * var13;
+                itemEntity.velocityY = (float)this.random.nextGaussian() * var13 + 0.2F;
+                itemEntity.velocityZ = (float)this.random.nextGaussian() * var13;
+                level.spawnEntity(itemEntity);
+            }
+        }
+
+        super.onBlockRemoved(level, x, y, z);
     }
 }

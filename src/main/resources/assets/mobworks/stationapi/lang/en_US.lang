@@ -6,6 +6,8 @@ tile.slowConveyor.name=Slow Mob Conveyor
 tile.moderateConveyor.name=Moderate Mob Conveyor
 tile.fastConveyor.name=Fast Mob Conveyor
 tile.mobGrinder.name=Mob Grinder
+tile.cursedGrass.name=Cursed Earth
+tile.vacuumMachine.name=Vacuum Machine
 
 item.spawnEgg.creeper.name=Spawn Creeper
 item.spawnEgg.skeleton.name=Spawn Skeleton
@@ -26,10 +28,36 @@ item.spawnEgg.wolf.name=Spawn Wolf
 item.spawnEgg.blank.name=Blank
 
 item.spawnerUpgrade.name=Spawner Upgrade
-item.spawnerUpgrade.name0=Redstone control upgrade
-item.spawnerUpgrade.name1=Max nearby mobs upgrade (+1)
-item.spawnerUpgrade.name2=Max nearby mobs downgrade (-1)
-item.spawnerUpgrade.name3=Mob spawning range upgrade (+1)
-item.spawnerUpgrade.name4=Mob spawning range downgrade (-1)
+tooltip.spawnerUpgrade0.name=Redstone control upgrade
+tooltip.spawnerUpgrade1.name=Max nearby mobs upgrade (+1)
+tooltip.spawnerUpgrade2.name=Max nearby mobs downgrade (-1)
+tooltip.spawnerUpgrade3.name=Mobs per spawn upgrade (+1)
+tooltip.spawnerUpgrade4.name=Mobs per spawn downgrade (-1)
+tooltip.spawnerUpgrade5.name=Mob spawning range upgrade (+1)
+tooltip.spawnerUpgrade6.name=Mob spawning range downgrade (-1)
+
+item.mobGrinderUpgrade.name=Mob grinder upgrade
+tooltip.mobGrinderUpgrade0.name=Damage++;
+tooltip.mobGrinderUpgrade1.name=Damage += 4;
+tooltip.mobGrinderUpgrade2.name=+6 damage;
+tooltip.mobGrinderUpgrade3.name=3x3 max range
+tooltip.mobGrinderUpgrade4.name=9x9 max range
+tooltip.mobGrinderUpgrade5.name=27x27 max range
+
+tooltip.toggleShowingWorkingArea.name=Toggle showing working area
+
+tooltip.redstoneIgnored.name=Redstone: IGNORED
+tooltip.redstoneRequired.name=Redstone: REQUIRES REDSTONE
+tooltip.redstoneReversed.name=Redstone: REQUIRES REDSTONE (INVERTED)
+
+text.mobGrinder.name=Mob grinder
+text.vacuumMachine.name=Vacuum machine
+text.inventory.name=Inventory
+text.currentDamage.name=Current damage:
+text.range.name=Range:
+text.offsetX.name=Offset X:
+text.offsetY.name=Offset Y:
+text.offsetZ.name=Offset Z:
+text.workingSize.name=Working size:
 
 tab.mobworks.name=Mobworks

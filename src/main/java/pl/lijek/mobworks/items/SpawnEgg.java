@@ -2,16 +2,13 @@ package pl.lijek.mobworks.items;
 
 import net.minecraft.block.BlockBase;
 import net.minecraft.block.MobSpawner;
-import net.minecraft.client.render.TextRenderer;
-import net.minecraft.client.render.entity.ItemRenderer;
-import net.minecraft.client.texture.TextureManager;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.modificationstation.stationapi.api.client.gui.CustomItemOverlay;
+import net.modificationstation.stationapi.api.client.texture.atlas.Atlas.Texture;
 import net.modificationstation.stationapi.api.registry.Identifier;
 import net.modificationstation.stationapi.api.template.item.TemplateItemBase;
 import org.jetbrains.annotations.NotNull;
@@ -20,8 +17,9 @@ import pl.lijek.mobworks.EntityEggList;
 import pl.lijek.mobworks.EntityEggProperties;
 import pl.lijek.mobworks.Facing;
 
-public class SpawnEgg extends TemplateItemBase implements CustomItemOverlay {
-    public int overlayTexturePosition;
+public class SpawnEgg extends TemplateItemBase{
+    public Texture overlayTexture;
+    public Texture backTexture;
 
     public SpawnEgg(@NotNull Identifier id) {
         super(id);
@@ -33,32 +31,20 @@ public class SpawnEgg extends TemplateItemBase implements CustomItemOverlay {
         return EntityEggList.getEggTranslationKey(item.getDamage());
     }
 
-    @Override
-    public void renderItemOverlay(ItemRenderer itemRenderer, int x, int y, ItemInstance itemInstance, TextRenderer textRenderer, TextureManager textureManager) {
-        //textureManager.bindTexture(textureManager.getTextureId("/assets/mobworks/textures/dots.png"));
-        /*textureManager.bindTexture(overlayTexturePosition);
-        Tessellator tessellator = Tessellator.INSTANCE;
-        x-= 2; y-=2;
-        tessellator.start();
-        tessellator.colour(getSecondaryNameColor(itemInstance.getDamage()));
-        tessellator.addVertex(x + 0, y + 0, 0.0D);
-        tessellator.addVertex(x + 0, y + 16, 0.0D);
-        tessellator.addVertex(x + 16, y + 16, 0.0D);
-        tessellator.addVertex(x + 16, y + 0, 0.0D);
-        tessellator.draw();*/
-        textRenderer.drawTextWithShadow(String.valueOf(itemInstance.getDamage()), x, y, 0xffffff);
+    public void setOverlayTexture(Texture texture){
+        overlayTexture = texture;
     }
 
-    public void setOverlayTexturePosition(int texturePosition){
-        overlayTexturePosition = texturePosition;
+    public void setBackTexture(Texture itemAtlasTexture) {
+        backTexture = itemAtlasTexture;
+        setTexturePosition(backTexture.index);
     }
 
-    @Override
-    public int getNameColour(int meta) {
+    public int getBackColor(int meta) {
         return EntityEggList.getEggProperties(meta).primaryColor;
     }
 
-    public int getSecondaryNameColor(int meta){
+    public int getDotsColor(int meta){
         return EntityEggList.getEggProperties(meta).secondaryColor;
     }
 

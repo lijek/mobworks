@@ -2,7 +2,6 @@ package pl.lijek.mobworks.items;
 
 import net.minecraft.block.BlockBase;
 import net.minecraft.block.MobSpawner;
-import net.minecraft.client.resource.language.TranslationStorage;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
@@ -12,8 +11,6 @@ import net.modificationstation.stationapi.api.template.item.TemplateItemBase;
 import pl.lijek.mobworks.MobSpawnerModifiers;
 import pl.lijek.mobworks.Mobworks;
 
-import java.util.Locale;
-
 public class SpawnerUpgrade extends TemplateItemBase implements CustomTooltipProvider {
     public int[] textures = new int[7];
 
@@ -22,8 +19,10 @@ public class SpawnerUpgrade extends TemplateItemBase implements CustomTooltipPro
     * 0 - redstone upgrade
     * 1 - max entities nearby upgrade
     * 2 - max entities nearby downgrade
-    * 3 - range upgrade
-    * 4 - range downgrade
+    * 3 - entities to spawn upgrade
+    * 4 - entities to spawn downgrade
+    * 5 - range upgrade
+    * 6 - range downgrade
     * */
 
     public SpawnerUpgrade(Identifier identifier) {
@@ -108,10 +107,9 @@ public class SpawnerUpgrade extends TemplateItemBase implements CustomTooltipPro
 
     @Override
     public String[] getTooltip(ItemInstance itemInstance, String originalTooltip) {
-        String key = String.format(Locale.ROOT, "item.%s:spawnerUpgrade.name%d", Mobworks.MOD_ID, itemInstance.getDamage());
-        String result = TranslationStorage.getInstance().method_995(key);
-        System.out.println(result + " asdadasdad");
-        //return new String[] {originalTooltip, "result == null || result.isEmpty() ? key : result"};
-        return new String[0];
+        return new String[] {
+                originalTooltip,
+                Mobworks.translateTooltip("spawnerUpgrade" + itemInstance.getDamage())
+        };
     }
 }

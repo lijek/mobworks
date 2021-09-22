@@ -3,45 +3,47 @@ package pl.lijek.mobworks.events.init;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlas;
-import net.modificationstation.stationapi.api.client.texture.atlas.ExpandableAtlas;
-import pl.lijek.mobworks.Mobworks;
-
-import java.util.Arrays;
-
-import static net.modificationstation.stationapi.api.registry.Identifier.of;
+import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
 
 public class TextureListener {
 
-    public static ExpandableAtlas TEXTURES;
+    public static int mobGrinderFront, mobGrinderSide, mobGrinderSideNoSword,
+                        cursedEarthTop, cursedEarthSide,
+                        vacuumMachine;
+    public static Atlas.Texture blankUpgrade;
 
     public int getItemTexture(String fileName){
-        Atlas.Texture texture = ExpandableAtlas.STATION_GUI_ITEMS.addTexture("/assets/mobworks/textures/"+fileName);
-        return texture.index;
-        //return TextureFactory.INSTANCE.addTexture(TextureRegistry.getRegistry("GUI_ITEMS"), "/assets/mobworks/textures/"+fileName);
+        return Atlases.getStationGuiItems().addTexture("/assets/mobworks/textures/item/"+fileName).index;
+    }
+
+    public Atlas.Texture getItemAtlasTexture(String fileName){
+        return Atlases.getStationGuiItems().addTexture("/assets/mobworks/textures/item/"+fileName);
     }
 
     public int getBlockTexture(String fileName){
-        //Atlas.Texture texture = TEXTURES.addTexture("/assets/mobworks/textures/"+fileName);
-        return ExpandableAtlas.STATION_TERRAIN.addTexture("/assets/mobworks/textures/"+fileName).index;
-    }
-
-    public int getTextureId(String fileName){
-        Atlas.Texture texture = TEXTURES.addTexture("/assets/mobworks/textures/"+fileName);
-        return texture.index;
+        return Atlases.getStationTerrain().addTexture("/assets/mobworks/textures/block/"+fileName).index;
     }
 
     public Atlas.Texture getBlockAtlasTexture(String fileName){
-        return ExpandableAtlas.STATION_TERRAIN.addTexture("/assets/mobworks/textures/"+fileName);
+        return Atlases.getStationTerrain().addTexture("/assets/mobworks/textures/block/"+fileName);
     }
 
 
     @EventListener
     public void registerTextures(TextureRegisterEvent event) {
-        TEXTURES = new ExpandableAtlas(of(Mobworks.MOD_ID, "textures"));
+        blankUpgrade = getItemAtlasTexture("blankUpgrade.png");
 
-        ItemListener.coolItem.setTexturePosition(getItemTexture("coolitem.png"));
-        ItemListener.spawnEgg.setTexturePosition(getItemTexture("spawnEgg.png"));
-        ItemListener.spawnEgg.setOverlayTexturePosition(getItemTexture("dots.png"));
+        ItemListener.coolItem.setTexturePosition(getItemTexture("coolItem.png"));
+        ItemListener.spawnEgg.setBackTexture(getItemAtlasTexture("spawnEgg.png"));
+        ItemListener.spawnEgg.setOverlayTexture(getItemAtlasTexture("dots.png"));
+
+        ItemListener.mobGrinderUpgrade.baseTexture = blankUpgrade;
+        ItemListener.mobGrinderUpgrade.textures.add(getItemAtlasTexture("damageUpgrade0.png"));
+        ItemListener.mobGrinderUpgrade.textures.add(getItemAtlasTexture("damageUpgrade1.png"));
+        ItemListener.mobGrinderUpgrade.textures.add(getItemAtlasTexture("damageUpgrade2.png"));
+        ItemListener.mobGrinderUpgrade.textures.add(getItemAtlasTexture("grinderRangeUpgrade0.png"));
+        ItemListener.mobGrinderUpgrade.textures.add(getItemAtlasTexture("grinderRangeUpgrade1.png"));
+        ItemListener.mobGrinderUpgrade.textures.add(getItemAtlasTexture("grinderRangeUpgrade2.png"));
 
         ItemListener.spawnerUpgrade.textures[0] = getItemTexture("redstoneUpgrade.png");
         ItemListener.spawnerUpgrade.textures[1] = getItemTexture("countUpgrade.png");
@@ -51,28 +53,17 @@ public class TextureListener {
         ItemListener.spawnerUpgrade.textures[5] = getItemTexture("rangeUpgrade.png");
         ItemListener.spawnerUpgrade.textures[6] = getItemTexture("rangeDowngrade.png");
 
-        /*BlockListener.slowConveyor.texture      = getBlockTexture("slowConveyor.png");
-        BlockListener.moderateConveyor.texture  = getBlockTexture("moderateConveyor.png");
-        BlockListener.fastConveyor.texture      = getBlockTexture("fastConveyor.png");*/
-
-        //BlockListener.slowConveyor.texture      = ExpandableAtlas.STATION_TERRAIN.addTexture("/assets/mobworks/textures/slowConveyor.png").index;
         BlockListener.slowConveyor.setAtlasTexture(getBlockAtlasTexture("slowConveyor.png"));
         BlockListener.moderateConveyor.setAtlasTexture(getBlockAtlasTexture("moderateConveyor.png"));
         BlockListener.fastConveyor.setAtlasTexture(getBlockAtlasTexture("fastConveyor.png"));
 
-        /*BlockListener.grinder.textures[0] = getBlockTexture("mobGrinderFront.png");
-        BlockListener.grinder.textures[1] = getBlockTexture("mobGrinderTopAndBottom.png");
-        BlockListener.grinder.textures[2] = getBlockTexture("mobGrinderSide.png");*/
-        //BlockListener.grinder.texture = getBlockTexture("mobGrinderTopAndBottom.png");
+        mobGrinderFront = getBlockTexture("mobGrinderFront.png");
+        mobGrinderSide = getBlockTexture("mobGrinderSide.png");
+        mobGrinderSideNoSword = getBlockTexture("mobGrinderSideNoSword.png");
 
-        /*BlockListener.grinder.textures[0] = getBlockTexture("slowConveyor.png");
-        BlockListener.grinder.textures[1] = getBlockTexture("moderateConveyor.png");
-        BlockListener.grinder.textures[2] = getBlockTexture("fastConveyor.png");*/
+        cursedEarthTop = getBlockTexture("cursedEarthTop.png");
+        cursedEarthSide = getBlockTexture("cursedEarthSide.png");
 
-        System.out.println(BlockListener.grinder.textures[0] = getBlockTexture("mobGrinderSide.png"));
-        System.out.println(BlockListener.grinder.textures[1] = getBlockTexture("mobGrinderTopAndBottom.png"));
-        System.out.println(BlockListener.grinder.textures[2] = getBlockTexture("mobGrinderFront.png"));
-
-        System.out.println(Arrays.toString(BlockListener.grinder.textures));
+        vacuumMachine = getBlockTexture("vacuumMachine.png");
     }
 }
