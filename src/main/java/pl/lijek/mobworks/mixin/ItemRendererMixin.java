@@ -2,7 +2,7 @@ package pl.lijek.mobworks.mixin;
 
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.client.render.TextRenderer;
-import net.minecraft.client.render.TileRenderer;
+import net.minecraft.client.render.block.BlockRenderer;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.ItemRenderer;
 import net.minecraft.client.texture.TextureManager;
@@ -26,7 +26,7 @@ import java.util.Random;
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin extends EntityRenderer {
 
-    @Shadow private TileRenderer field_1708;
+    @Shadow private BlockRenderer field_1708;
 
     @Shadow public boolean field_1707;
 
@@ -146,7 +146,7 @@ public abstract class ItemRendererMixin extends EntityRenderer {
         GL11.glPopMatrix();
     }
 
-    private void renderItemInGui(Atlas.Texture texture, int renderX, int renderY,int width, int height) {
+    private void renderItemInGui(Atlas.Sprite texture, int renderX, int renderY,int width, int height) {
         float zIndex = 0.0F;
         texture.getAtlas().bindAtlas();
         if(texture.getAtlas().getTessellator() == null)

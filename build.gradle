@@ -13,7 +13,7 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath 'com.github.Chocohead:Fabric-Loom:66ed9fe'
+		classpath 'com.github.Chocohead:Fabric-Loom:0d0261a'
 	}
 }
 
@@ -103,8 +103,10 @@ dependencies {
 		}
 		files(file.absolutePath)
 	}
-	modImplementation 'com.github.lijek:StationAPI:b275c55'
-	modImplementation 'com.github.lijek:Creative-b1.7.3:5430b39'
+	modImplementation "com.github.ModificationStation:StationAPI:${project.stapi_version}"
+	modImplementation("com.github.lijek:Creative-b1.7.3:6598cd6") {
+		exclude group: 'com.github.ModificationStation', module: 'StationAPI'
+	}
 	//modImplementation urlFile("https://github.com/lijek/Creative-b1.7.3/releases/download/2.0.1/creative-2.0.1-dev.jar", "Creative")
 	//modImplementation urlFile("https://github.com/ModificationStation/StationAPI/releases/download/2.0-PRE1/StationAPI-2.0-PRE1-dev.jar", "StationAPI")
 	//compile urlFile("https://github.com/ModificationStation/StationAPI/releases/download/2.0-PRE1/StationAPI-2.0-PRE1-javadoc.jar", "StationAPIJavadoc")

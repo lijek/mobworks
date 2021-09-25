@@ -6,8 +6,8 @@ import net.minecraft.entity.Living;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.inventory.InventoryBase;
 import net.minecraft.item.ItemInstance;
+import net.minecraft.level.BlockView;
 import net.minecraft.level.Level;
-import net.minecraft.level.TileView;
 import net.minecraft.tileentity.TileEntityBase;
 import net.minecraft.util.maths.MathHelper;
 import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
@@ -47,7 +47,7 @@ public class MobGrinder extends TemplateBlockWithEntity {
     }
 
     @Override
-    public int getTextureForSide(TileView tileView, int x, int y, int z, int side) {
+    public int getTextureForSide(BlockView tileView, int x, int y, int z, int side) {
         if (side == 1 || side == 0) {
             return mobGrinderSideNoSword;
         } else {

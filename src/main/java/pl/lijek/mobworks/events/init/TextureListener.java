@@ -10,13 +10,13 @@ public class TextureListener {
     public static int mobGrinderFront, mobGrinderSide, mobGrinderSideNoSword,
                         cursedEarthTop, cursedEarthSide,
                         vacuumMachine;
-    public static Atlas.Texture blankUpgrade;
+    public static Atlas.Sprite blankUpgrade;
 
     public int getItemTexture(String fileName){
         return Atlases.getStationGuiItems().addTexture("/assets/mobworks/textures/item/"+fileName).index;
     }
 
-    public Atlas.Texture getItemAtlasTexture(String fileName){
+    public Atlas.Sprite getItemAtlasTexture(String fileName){
         return Atlases.getStationGuiItems().addTexture("/assets/mobworks/textures/item/"+fileName);
     }
 
@@ -24,7 +24,7 @@ public class TextureListener {
         return Atlases.getStationTerrain().addTexture("/assets/mobworks/textures/block/"+fileName).index;
     }
 
-    public Atlas.Texture getBlockAtlasTexture(String fileName){
+    public Atlas.Sprite getBlockAtlasTexture(String fileName){
         return Atlases.getStationTerrain().addTexture("/assets/mobworks/textures/block/"+fileName);
     }
 

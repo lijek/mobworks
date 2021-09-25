@@ -4,8 +4,6 @@
   "package": "pl.lijek.mobworks.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "class_556Mixin",
-    "ItemRendererMixin",
     "LevelMixin",
     "LivingMixin",
     "TileEntityMobSpawnerMixin"
@@ -13,6 +11,8 @@
   "server": [
   ],
   "client": [
+    "class_556Mixin",
+    "ItemRendererMixin",
     "MobSpawnerRendererMixin"
   ],
   "injectors": {

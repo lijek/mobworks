@@ -64,7 +64,7 @@ public class class_556Mixin {
         }
     }
 
-    private void renderTextureInHand(Atlas.Texture  texture) {
+    private void renderTextureInHand(Atlas.Sprite  texture) {
         GL11.glPushMatrix();
 
         texture.getAtlas().bindAtlas();

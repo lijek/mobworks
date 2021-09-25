@@ -6,5 +6,5 @@ import net.modificationstation.stationapi.api.client.texture.atlas.Atlas;
 public interface CustomItemOverlay {
     TextureRGB getTextureAndColorForRender(ItemInstance item);
 
-    Atlas.Texture getBaseTexture();
+    Atlas.Sprite getBaseTexture();
 }

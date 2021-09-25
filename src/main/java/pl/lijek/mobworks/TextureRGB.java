@@ -8,7 +8,7 @@ import pl.lijek.mobworks.events.init.TextureListener;
 public class TextureRGB {
     public static final TextureRGB BLANK = new TextureRGB(TextureListener.blankUpgrade, 255, 255, 255);
 
-    public final Atlas.Texture texture;
+    public final Atlas.Sprite texture;
     public final int
                 r,
                 g,

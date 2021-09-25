@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
 import net.minecraft.tileentity.TileEntityMobSpawner;
-import net.modificationstation.stationapi.api.client.texture.atlas.Atlas.Texture;
+import net.modificationstation.stationapi.api.client.texture.atlas.Atlas.Sprite;
 import net.modificationstation.stationapi.api.registry.Identifier;
 import net.modificationstation.stationapi.api.template.item.TemplateItemBase;
 import org.jetbrains.annotations.NotNull;
@@ -18,8 +18,8 @@ import pl.lijek.mobworks.EntityEggProperties;
 import pl.lijek.mobworks.Facing;
 
 public class SpawnEgg extends TemplateItemBase{
-    public Texture overlayTexture;
-    public Texture backTexture;
+    public Sprite overlayTexture;
+    public Sprite backTexture;
 
     public SpawnEgg(@NotNull Identifier id) {
         super(id);
@@ -31,11 +31,11 @@ public class SpawnEgg extends TemplateItemBase{
         return EntityEggList.getEggTranslationKey(item.getDamage());
     }
 
-    public void setOverlayTexture(Texture texture){
+    public void setOverlayTexture(Sprite texture){
         overlayTexture = texture;
     }
 
-    public void setBackTexture(Texture itemAtlasTexture) {
+    public void setBackTexture(Sprite itemAtlasTexture) {
         backTexture = itemAtlasTexture;
         setTexturePosition(backTexture.index);
     }

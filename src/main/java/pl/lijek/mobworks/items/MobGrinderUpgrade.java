@@ -14,8 +14,8 @@ import java.util.List;
 
 public class MobGrinderUpgrade extends TemplateItemBase implements CustomItemOverlay, CustomTooltipProvider {
 
-    public List<Atlas.Texture> textures = new ArrayList<>();
-    public Atlas.Texture baseTexture;
+    public List<Atlas.Sprite> textures = new ArrayList<>();
+    public Atlas.Sprite baseTexture;
 
     /*
     * Meta guide
@@ -49,7 +49,7 @@ public class MobGrinderUpgrade extends TemplateItemBase implements CustomItemOve
     }
 
     @Override
-    public Atlas.Texture getBaseTexture() {
+    public Atlas.Sprite getBaseTexture() {
         return baseTexture;
     }
 

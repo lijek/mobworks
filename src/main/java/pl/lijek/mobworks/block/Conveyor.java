@@ -2,15 +2,15 @@ package pl.lijek.mobworks.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.client.render.Tessellator;
-import net.minecraft.client.render.TileRenderer;
+import net.minecraft.client.render.block.BlockRenderer;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.Living;
+import net.minecraft.level.BlockView;
 import net.minecraft.level.Level;
-import net.minecraft.level.TileView;
 import net.minecraft.util.maths.Box;
 import net.minecraft.util.maths.MathHelper;
 import net.minecraft.util.maths.Vec3f;
-import net.modificationstation.stationapi.api.client.model.BlockWithWorldRenderer;
+import net.modificationstation.stationapi.api.client.model.block.BlockWithWorldRenderer;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlas;
 import net.modificationstation.stationapi.api.registry.Identifier;
 import net.modificationstation.stationapi.api.template.block.TemplateBlockBase;
@@ -18,14 +18,14 @@ import paulevs.creative.CreativePlayer;
 
 public class Conveyor extends TemplateBlockBase implements BlockWithWorldRenderer {
     public final double speed;
-    public Atlas.Texture atlasTexture;
+    public Atlas.Sprite atlasTexture;
     public Conveyor(Identifier identifier, double speed) {
         super(identifier, Material.WOOL);
         setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.120F, 1.0F);
         this.speed = speed;
     }
 
-    public void setAtlasTexture(Atlas.Texture atlasTexture){
+    public void setAtlasTexture(Atlas.Sprite atlasTexture){
         this.atlasTexture = atlasTexture;
         this.texture = atlasTexture.index;
     }
@@ -96,9 +96,9 @@ public class Conveyor extends TemplateBlockBase implements BlockWithWorldRendere
     }
 
     @Override
-    public void renderWorld(TileRenderer tileRenderer, TileView level, int x, int y, int z) {
+    public boolean renderWorld(BlockRenderer tileRenderer, BlockView level, int x, int y, int z) {
         int meta = level.getTileMeta(x, y, z) & 3;
-        tileRenderer.method_76(this, x, y, z);
+        tileRenderer.renderStandardBlock(this, x, y, z);
         Tessellator tessellator = atlasTexture.getAtlas().getTessellator();
         float brightness = this.getBrightness(level, x, y, z);
         tessellator.colour(brightness, brightness, brightness);
@@ -144,5 +144,6 @@ public class Conveyor extends TemplateBlockBase implements BlockWithWorldRendere
         tessellator.vertex(var34, var40, var38, minTextureX, maxTextureY);
         tessellator.vertex(var33, var40, var37, maxTextureX, maxTextureY);
         tessellator.vertex(var32, var40, var36, maxTextureX, minTextureY);
+        return false;
     }
 }
